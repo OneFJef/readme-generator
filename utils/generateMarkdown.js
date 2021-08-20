@@ -89,7 +89,6 @@ function generateMarkdown(data) {
   
   ## **Usage**
   
-  
   \t${data.usage}
   
   ---
