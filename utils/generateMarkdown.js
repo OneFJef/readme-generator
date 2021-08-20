@@ -17,7 +17,20 @@ function renderLicenseBadge(license) {
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) {}
+function renderLicenseLink(license) {
+    switch (license) {
+      case "MIT":
+        return "";
+      case "Apache 2.0":
+        return "[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)";
+      case "GPL 3.0":
+        return "[https://www.gnu.org/licenses/](https://www.gnu.org/licenses/)";
+      case "BSD 3":
+        return "";
+      default:
+        break;
+    }
+  }
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
