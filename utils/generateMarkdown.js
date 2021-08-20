@@ -20,13 +20,13 @@ function renderLicenseBadge(license) {
 function renderLicenseLink(license) {
   switch (license) {
     case "MIT":
-      return "";
+      return "[MIT License](https://spdx.org/licenses/MIT.html)";
     case "Apache 2.0":
-      return "[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)";
+      return "[Apache License 2.0](https://spdx.org/licenses/Apache-2.0.html)";
     case "GPL 3.0":
-      return "[https://www.gnu.org/licenses/](https://www.gnu.org/licenses/)";
+      return "[GNU General Public License v3.0](https://spdx.org/licenses/GPL-3.0-only.html)";
     case "BSD 3":
-      return "";
+      return "[BSD 3](https://spdx.org/licenses/BSD-3-Clause.html)";
     default:
       break;
   }
@@ -42,15 +42,11 @@ function renderLicenseSection(license) {
     case "Apache 2.0":
       return `Copyright &copy; ${dayjs().format(
         "YYYY"
-      )} Jef Mitchell\n\nLicensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at\n\n${renderLicenseLink(
-        "Apache 2.0"
-      )}\n\nUnless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.`;
+      )} Jef Mitchell\n\nLicensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at\n\n[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)\n\nUnless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.`;
     case "GPL 3.0":
       return `Copyright &copy; ${dayjs().format(
         "YYYY"
-      )} Jef Mitchell\n\nThis program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program.  If not, see ${renderLicenseLink(
-        data.license
-      )}`;
+      )} Jef Mitchell\n\nThis program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program.  If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/)`;
     case "BSD 3":
       return `Copyright &copy; ${dayjs().format(
         "YYYY"
@@ -62,17 +58,17 @@ function renderLicenseSection(license) {
 
 // Creates a complete Markdown file and with the answers from the index.js prompts.
 function generateMarkdown(data) {
-  return `# ${data.title}
+  return `# **${data.title}**
   
   ${renderLicenseBadge(data.license)}
   
-  ## Description
+  ## **Description**
   
   ${data.description}
   
   ---
   
-  ## Table of Contents (Optional)
+  ## **Table of Contents**
   
   - [Installation](#installation)
   - [Usage](#usage)
@@ -83,7 +79,7 @@ function generateMarkdown(data) {
   
   ---
   
-  ## Installation
+  ## **Installation**
   
   To install necessary dependencies, run the following command: 
   
@@ -91,20 +87,28 @@ function generateMarkdown(data) {
   
   ---
   
-  ## Usage
+  ## **Usage**
   
   
   \t${data.usage}
   
   ---
   
-  ## License
+  ## **License**
   
+  ### ${renderLicenseLink(data.license)}
+
   ${renderLicenseSection(data.license)}
   
   ---
+
+  ## **Contribution**
+
+  ${data.contribution}
+
+  ---
   
-  ## Tests
+  ## **Tests**
   
   To run test, run the following command:
   
@@ -112,7 +116,7 @@ function generateMarkdown(data) {
   
   ---
   
-  ## Questions
+  ## **Questions**
   
   If you have any questions about the rep, open an issue or contact me directly at [${
     data.email
