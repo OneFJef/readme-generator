@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 const fs = require("fs");
 const inquirer = require("inquirer");
+const emailValidator = require("email-validator");
 const generateMarkdown = require("./utils/generateMarkdown");
 
 // TODO: Create an array of questions for user input
@@ -42,6 +43,13 @@ const questions = [
   {
     name: "email",
     message: "E-Mail Address:",
+    validate(input) {
+      if (emailValidator.validate(input)) {
+        return true;
+      } else {
+        return "Please enter a valid email address.";
+      }
+    },
   },
 ];
 
